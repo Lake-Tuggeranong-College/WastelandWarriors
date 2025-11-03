@@ -73,7 +73,7 @@ func _unhandled_input(event):
 	if not is_multiplayer_authority():
 		return
 
-	if Input.is_action_pressed("tab"):
+	if Input.is_action_pressed(" "):
 		TabMenu.show()
 	else:
 		TabMenu.hide()
@@ -152,7 +152,7 @@ func reduce_health(amount: int) -> void:
 func die() -> void:
 	LOSE.show()
 	hud.hide()
-	
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func update_health_bar(health):
 	health_bar.value = health
@@ -227,3 +227,14 @@ func remove_player(peer_id: int) -> void:
 	if player_node:
 		player_node.queue_free()
 		print("Removed player with peer ID:", peer_id)
+
+#LOSE menu
+func _on_menu_button_pressed() -> void:
+	LOSE.hide()
+	MultiplayerMainMenu.show()
+
+func _on_respawn_button_pressed() -> void:
+	pass # Replace with function body.
+	#health -= amount
+	update_health_bar(health)
+#player respawn with full health 
