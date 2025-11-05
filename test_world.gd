@@ -20,8 +20,8 @@ var toggle = true
 var bulletScene = preload("res://Bullet.tscn")
 
 
-
 func _ready() -> void:
+	Global.MainMenu = $CanvasLayer/MainMenu
 	Global.PauseMenu = $CanvasLayer/PauseMenu
 	Global.Lose = $CanvasLayer/Lose
 	Global.MultiplayerMainMenu = $CanvasLayer/MultiplayerMainMenu

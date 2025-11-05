@@ -5,6 +5,7 @@ var Lose
 var PauseMenu
 var TabMenu
 var MultiplayerMainMenu
+var MainMenu
 
 var HMult: float = 0.0
 var DEnemyMult: int = 0
