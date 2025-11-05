@@ -3,7 +3,6 @@ extends CharacterBody3D
 signal health_changed(health)
 var player_peer_id
 
-
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 @onready var Player = self
@@ -21,6 +20,7 @@ var tracked = false
 @onready var MultiplayerMainMenu = $CanvasLayer/MultiplayerMainMenu
 @onready var address_entry = get_node_or_null("CanvasLayer/MainMenu/Control/MarginContainer/VBoxContainer/AddressEntry")
 @onready var world = get_node("/root/testWorld")
+@onready var main_menu = $CanvasLayer/Control
 
 var hit_cooldown := 0.3
 var time_since_last_hit := 0.0
@@ -69,6 +69,7 @@ func _ready():
 	upnp.discover(2000, 2, "InternetGatewayDevice")
 	IpAddress = upnp.query_external_address()
 	
+
 func _unhandled_input(event):
 	if not is_multiplayer_authority():
 		return
@@ -162,6 +163,10 @@ func _on_remuse_multiplayer_pressed() -> void:
 	MultiplayerMainMenu.hide()
 
 
+func _on_single_player_pressed() -> void:
+	pass # Replace with function body.
+
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
@@ -229,12 +234,15 @@ func remove_player(peer_id: int) -> void:
 		print("Removed player with peer ID:", peer_id)
 
 #LOSE menu
-func _on_menu_button_pressed() -> void:
-	LOSE.hide()
-	MultiplayerMainMenu.show()
-
 func _on_respawn_button_pressed() -> void:
 	pass # Replace with function body.
 	#health -= amount
 	update_health_bar(health)
 #player respawn with full health 
+
+func _on_menu_button_pressed() -> void:
+	LOSE.hide()
+	MultiplayerMainMenu.show()
+
+func _on_Quit_pressed() -> void:
+	get_tree().quit()
